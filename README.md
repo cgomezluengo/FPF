@@ -1,4 +1,22 @@
-# FPF
+# FPF - Footbal Player Finder
+
+## Overview 
+
+The main goal of this exercise is to familiarize with the technology stack in the
+Interact Refresh project. To do so, you have to build a simple search form that will
+fetch players using a few filters.
+
+## Instruction
+
+1. Create a Angular application
+
+2. Build a Redux application that will fetch for football players given a number of
+field.
+
+3. Accomplish at least 80% coverage in Istanbul (default reporter in Jest) in all
+files inside src folder
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.1.
 
