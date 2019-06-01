@@ -1,0 +1,47 @@
+<form (ngSubmit)="onSubmit()" #playerForm="ngForm">
+    <div class="row">
+        <div class="col">
+            <input type="text" #playerName class="form-control" id="name" [(ngModel)]="searchModel.name" name="name" #name="ngModel" placeholder="Player Name" />
+        </div>
+        <div class="form-group">
+
+            <select class="form-control" #position placeholder="Position" id="position" [(ngModel)]="searchModel.position" #position="ngModel" name="position" id="exampleFormControlSelect1">
+              <option disabled selected>Select position</option>
+              <option>Centre-Forward</option>
+              <option>Keeper</option>
+              <option>Centre-Back</option>
+              <option>Left-Back</option>
+              <option>Central Midfield</option>
+              <option>Left Midfield</option>
+              <option>Attacking Midfield</option>
+              <option>Left Wing</option>
+              <option>Defensive Midfield</option>
+              
+            </select>
+        </div>
+        <div class="col">
+            <input type="number" #age class="form-control" value="" [(ngModel)]="searchModel.age" name="age" id="age" #age="ngModel" placeholder="Age" min="18" max="40">
+
+        </div>
+        <div class="col"><button type="button" (click)="onSubmit(playerForm)" class="btn btn-dark">Search</button></div>
+    </div>
+</form>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="dark">Name</th>
+            <th scope="col">Position</th>
+            <th scope="col">Nacionality</th>
+            <th scope="col">Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let serv of visiblePlayers ">
+            <td>{{serv.name}}</td>
+            <td>{{serv.position}}</td>
+            <td>{{serv.nationality}}</td>
+            <td>{{serv.age}}</td>
+        </tr>
+    </tbody>
+</table>
