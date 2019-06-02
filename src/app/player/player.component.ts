@@ -27,7 +27,7 @@ export class PlayerComponent implements OnInit {
     this.formSearch = new FormGroup({
       namePlayer: new FormControl(' '),
       positionPlayer: new FormControl(' '),
-      agePlayer: new FormControl(' ')
+      agePlayer: new FormControl(' ', [Validators.min(18),Validators.max(20)])
     })
 
     this.playerService.getPlayers().subscribe(
@@ -75,6 +75,6 @@ export class PlayerComponent implements OnInit {
   }  
 
   onSubmit(form: NgForm){
-      this.search(form.value.name,form.value.position,form.value.age);
+      this.search(form.value.namePlayer,form.value.position,form.value.agePlayer);
     }
   }

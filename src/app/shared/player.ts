@@ -6,10 +6,11 @@ export class Player {
     nationality: string;
     position: string;
     age: number;
+    
 }
 
 export class SearchModel {
-    name: string;
-    age: number;
+    namePlayer: string;
+    agePlayer: number;
     position: string;
 }
