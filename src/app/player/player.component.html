@@ -1,8 +1,10 @@
 <form (ngSubmit)="onSubmit()" #formSearch="ngForm">
     <div class="row">
         <div class="col">
-            <input type="text" #playerName class="form-control" id="name" [(ngModel)]="searchModel.name" name="namePlayer" #namePlayer="ngModel" placeholder="Player Name" />
-
+            <input type="text" #playerName class="form-control" id="namePlayer" [(ngModel)]="searchModel.namePlayer" name="namePlayer" #namePlayer="ngModel" placeholder="Player Name" />
+            <div *ngIf="nameError" class="alert alert-danger" role="alert">
+                The name should not have numbers
+            </div>
         </div>
         <div class="form-group">
 
@@ -21,8 +23,8 @@
             </select>
         </div>
         <div class="col">
-            <input type="number" #agePlayer class="form-control" value="" [(ngModel)]="searchModel.age" name="agePlayer" id="agePlayer" #age="ngModel" placeholder="Age" min="18" max="40">
-
+            <input type="number" #agePlayer class="form-control" value="" [(ngModel)]="searchModel.agePlayer" #agePlayer="ngModel" name="agePlayer" id="agePlayer" placeholder="Age" min="18" max="40">
+            <div *ngIf="ageError" class="alert alert-danger" role="alert"> The age must be between 18 and 40.</div>
         </div>
         <div class="col"><button type="button" (click)="onSubmit(formSearch)" class="btn btn-dark">Search</button></div>
     </div>

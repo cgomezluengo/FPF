@@ -20,7 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-     ReactiveFormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     HttpClientXsrfModule.withOptions({
