@@ -16,16 +16,12 @@ export class PlayerComponent implements OnInit {
   visiblePlayers: Player[];
   searchModel: SearchModel = new SearchModel();
   formSearch: FormGroup;
-
-
-  constructor(public playerService: PlayerService) {
-
-  }
   nameError = false;
   ageError = false;
 
-  ngOnInit() {
+  constructor(public playerService: PlayerService) {}
 
+  ngOnInit() {
     this.formSearch = new FormGroup({
       namePlayer: new FormControl(' '),
       positionPlayer: new FormControl(' '),
@@ -50,17 +46,14 @@ export class PlayerComponent implements OnInit {
   search(namePlayer: string, positionPlayer: string, agePlayer: number) {
     let playersF = this.allPlayers;
 
-    if (namePlayer !== undefined && namePlayer.trim().length > 0) {
+    if (namePlayer !== undefined && namePlayer.trim().length > 0)
       playersF = playersF.filter(player => player.name.toLowerCase().includes(namePlayer.toLowerCase()));
-    }
 
-    if (positionPlayer !== undefined && positionPlayer.trim().length > 0) {
+    if (positionPlayer !== undefined && positionPlayer.trim().length > 0)
       playersF = playersF.filter(player => player.position == positionPlayer);
-    }
 
-    if (agePlayer !== undefined && agePlayer !== null) {
+    if (agePlayer !== undefined && agePlayer !== null)
       playersF = playersF.filter(player => agePlayer == player.age)
-    }
 
     this.visiblePlayers = playersF;
   }
@@ -76,24 +69,14 @@ export class PlayerComponent implements OnInit {
 
   validateName(name: string) {
     const regex = /^[a-zA-Z_]*$/;
-
     this.nameError = (regex.exec(name)) === null;
-
   }
-
-
 
   onSubmit(form: NgForm) {
     this.validateName(form.value.namePlayer)
     this.validateAge(form.value.agePlayer)
-    
-    if (!(this.nameError || this.ageError)) {
 
+    if (!(this.nameError || this.ageError))
       this.search(form.value.namePlayer, form.value.position, form.value.agePlayer);
-    }
-
-
   }
-
-  }
-
+}

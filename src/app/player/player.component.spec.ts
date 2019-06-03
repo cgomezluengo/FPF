@@ -13,32 +13,44 @@ describe('PlayerComponent', () => {
   let http:HttpClient
   let playerService :PlayerService
   let component: PlayerComponent
-  //let component: PlayerComponent;
   let fixture: ComponentFixture<PlayerComponent>;
+
+  let player1 = new Player();
+  player1.dateOfBirth = "1993-05-13";
+  player1.name = "Romelu Lukaku";
+  player1.position = "Centre-Forward";
+
+  let player2 = new Player();
+  player2.dateOfBirth = "1987-02-22";
+  player2.name = "Sergio Romero";
+  player2.position = "Keeper";
+  
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule,HttpClientModule,BrowserModule,ReactiveFormsModule,ReactiveFormsModule,BrowserModule,RouterModule,
-        
+      imports: [
+        FormsModule,
+        HttpClientModule,
+        BrowserModule,
+        ReactiveFormsModule,
+        ReactiveFormsModule,
+        BrowserModule,
+        RouterModule
       ],
-      declarations: [AppComponent,
+      declarations: [
+        AppComponent,
         PlayerComponent
       ],
       providers: [
         PlayerService
       ],
-      
-      
     }).compileComponents();
   }));
 
    beforeEach(() => {
-    
-    playerService = new PlayerService(http)
-    component = new PlayerComponent(playerService) 
-    //fixture = TestBed.createComponent(PlayerComponent);
-    //component = fixture.componentInstance;
-    //fixture.detectChanges();
+    playerService = new PlayerService(http);
+    component = new PlayerComponent(playerService);
+    component.allPlayers = [player1, player2];
   });
 
   it('should create', () => {
@@ -46,7 +58,6 @@ describe('PlayerComponent', () => {
   });
 
   it("calculateAge should return '26' years", async(()=>{   
-    
     expect(component.calculateAge("02/02/1993")).toEqual(26);
   }));
 
@@ -65,6 +76,42 @@ describe('PlayerComponent', () => {
     expect(component.ageError).toEqual(true);
   }));
 
-  
+  it("nameError should be false from validateName('Luk')", async(()=>{   
+    component.validateName("Luk")
+    expect(component.nameError).toEqual(false);
+  }));
 
+  it("nameError should be true from validateName('Luk2')", async(()=>{   
+    component.validateName("Luk2")
+    expect(component.nameError).toEqual(true);
+  }));
+
+  it("nameError should be false from empty validateName('')", async(()=>{   
+    component.validateName("")
+    expect(component.nameError).toEqual(false);
+  }));
+  
+  it("nameError should be true from validateName('2Luk')", async(()=>{   
+    component.validateName("2Luk")
+    expect(component.nameError).toEqual(true);
+  }));
+  
+  it("the ages of the players are well calculated", async(()=>{   
+    component.calculateAges()
+    expect(component.allPlayers[0].age).toEqual(26);
+    expect(component.allPlayers[1].age).toEqual(32);
+  }));
+
+  it("the search method finds the correct players", async(()=>{   
+    component.calculateAges();
+    component.search("Ser", "Keeper", 32);
+    console.log(component.visiblePlayers);
+    expect(component.visiblePlayers[0].age).toEqual(32);
+    expect(component.visiblePlayers[0].name).toEqual("Sergio Romero");
+    component.calculateAges();
+    component.search("Luk", "Centre-Forward", 26);
+    console.log(component.visiblePlayers);
+    expect(component.visiblePlayers[0].age).toEqual(26);
+    expect(component.visiblePlayers[0].name).toEqual("Romelu Lukaku");
+  }));
 });
