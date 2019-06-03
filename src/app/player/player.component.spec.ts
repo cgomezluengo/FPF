@@ -50,4 +50,21 @@ describe('PlayerComponent', () => {
     expect(component.calculateAge("02/02/1993")).toEqual(26);
   }));
 
+  it("ageError should be false from validateAge(26)", async(()=>{   
+    component.validateAge(26)
+    expect(component.ageError).toEqual(false);
+  }));
+  
+  it("ageError should be true from validateAge(12)", async(()=>{   
+    component.validateAge(12)
+    expect(component.ageError).toEqual(true);
+  }));
+  
+  it("ageError should be true from validateAge(-1)", async(()=>{   
+    component.validateAge(-1)
+    expect(component.ageError).toEqual(true);
+  }));
+
+  
+
 });
