@@ -39,10 +39,10 @@ describe('PlayerComponent', () => {
       ],
       declarations: [
         AppComponent,
-        PlayerComponent
+        PlayerComponent,
       ],
       providers: [
-        PlayerService
+        PlayerService,
       ],
     }).compileComponents();
   }));
@@ -105,12 +105,10 @@ describe('PlayerComponent', () => {
   it("the search method finds the correct players", async(()=>{   
     component.calculateAges();
     component.search("Ser", "Keeper", 32);
-    console.log(component.visiblePlayers);
     expect(component.visiblePlayers[0].age).toEqual(32);
     expect(component.visiblePlayers[0].name).toEqual("Sergio Romero");
     component.calculateAges();
     component.search("Luk", "Centre-Forward", 26);
-    console.log(component.visiblePlayers);
     expect(component.visiblePlayers[0].age).toEqual(26);
     expect(component.visiblePlayers[0].name).toEqual("Romelu Lukaku");
   }));
