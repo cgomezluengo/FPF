@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PlayerfinderComponent } from './playerfinder/playerfinder.component';
+
 import { PlayerComponent } from './player/player.component';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { PlayerService } from './shared/player.service';
@@ -12,7 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    PlayerfinderComponent,
+    
     PlayerComponent,
     
   ],

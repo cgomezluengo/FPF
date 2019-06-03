@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PlayerfinderComponent } from './playerfinder/playerfinder.component';
+import { PlayerComponent } from './player/player.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/playerfinder', pathMatch: 'full' },
-  { path: 'playerfinder', component: PlayerfinderComponent },
+  { path: '', redirectTo: '/player', pathMatch: 'full' },
+  { path: 'player', component: PlayerComponent },
 ];
 
 @NgModule({
