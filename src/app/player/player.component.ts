@@ -39,12 +39,6 @@ export class PlayerComponent implements OnInit {
         this.calculateAges();
       }
     );
-
-    //   this.formSearch = new FormGroup({
-    //     namePlayer: new FormControl(null, Validators.required),
-    //     positionPlayer: new FormControl(' '),
-    //     agePlayer: new FormControl(null, [Validators.max(this.maxAge),Validators.min(this.minAge)])
-    //   })
   }
 
   calculateAges() {
