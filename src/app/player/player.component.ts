@@ -18,13 +18,28 @@ export class PlayerComponent implements OnInit {
   formSearch: FormGroup;
   nameError = false;
   ageError = false;
-
+  status_values = [
+    "Centre-Forward",
+    "Keeper",
+    "Centre-Back",
+    "Left-Back",
+    "Central Midfield",
+    "Left Midfield",
+    "Attacking Midfield",
+    "Left Wing",
+    "Defensive Midfield",
+    ]
+    
   constructor(public playerService: PlayerService) {}
 
   ngOnInit() {
+    
+    //to be seen in the select
+    this.searchModel.position = "Position"
+
     this.formSearch = new FormGroup({
       namePlayer: new FormControl(' '),
-      positionPlayer: new FormControl(' '),
+      positionPlayer: new FormControl(''),
       agePlayer: new FormControl(this.searchModel.agePlayer, [Validators.min(18), Validators.max(40)])
     })
 
@@ -49,7 +64,7 @@ export class PlayerComponent implements OnInit {
     if (namePlayer !== undefined && namePlayer.trim().length > 0)
       playersF = playersF.filter(player => player.name.toLowerCase().includes(namePlayer.toLowerCase()));
 
-    if (positionPlayer !== undefined && positionPlayer.trim().length > 0)
+    if (positionPlayer !== undefined && positionPlayer.trim().length > 0 && positionPlayer !== "Position")
       playersF = playersF.filter(player => player.position == positionPlayer);
 
     if (agePlayer !== undefined && agePlayer !== null)
